@@ -298,6 +298,7 @@ impl W65C02S {
         self.spurious_stack_read(system);
         self.check_irq_edge();
         self.a = self.pop(system);
+        self.nz_p(self.a);
     }
     pub(crate) fn phx<S: System>(&mut self, system: &mut S) {
         system.read_operand_spurious(self, self.pc);
@@ -309,6 +310,7 @@ impl W65C02S {
         self.spurious_stack_read(system);
         self.check_irq_edge();
         self.x = self.pop(system);
+        self.nz_p(self.x);
     }
     pub(crate) fn phy<S: System>(&mut self, system: &mut S) {
         system.read_operand_spurious(self, self.pc);
@@ -320,6 +322,7 @@ impl W65C02S {
         self.spurious_stack_read(system);
         self.check_irq_edge();
         self.y = self.pop(system);
+        self.nz_p(self.y);
     }
     pub(crate) fn tax<S: System>(&mut self, system: &mut S) {
         self.check_irq_edge();
